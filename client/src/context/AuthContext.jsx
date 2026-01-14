@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     setUser(res.data.user);
     if(res.data.user.role === "client") { 
         console.log(user.role)
+        console.log(res.data.user.role)
       window.location.href = "/dashboard"
     }else{
       window.location.href = "/Gigs"
