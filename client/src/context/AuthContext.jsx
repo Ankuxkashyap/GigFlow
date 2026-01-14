@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
     const res = await api.post("/auth/login", { email, password },{withCredentials: true});
     setUser(res.data.user);
     if(res.data.user.role === "client") { 
+        console.log(user.role)
       window.location.href = "/dashboard"
     }else{
       window.location.href = "/Gigs"
