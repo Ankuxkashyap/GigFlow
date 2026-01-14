@@ -18,7 +18,7 @@ const BidCard = ({ bid, onStatusChange, isHiringLocked }) => {
   const handleHire = async () => {
     try {
       setLoading(true);
-      const res = await api.patch(`/bids/${bid._id}/hire`);
+      const res = await api.patch(`/bids/${bid._id}/hire`, { withCredentials: true });
       console.log(res);
       onStatusChange(res.data.bids);
 

@@ -9,7 +9,7 @@ const RoleSelection = () => {
     const handleRoleSelection = (role) => {
         role = role.toLowerCase();
       api
-        .post("/auth/role-selection", { role })
+        .post("/auth/role-selection", { role },{withCredentials: true})
         .then((res) => {
           if (res.data.success) {
             if(res.data.user.role === "client"){

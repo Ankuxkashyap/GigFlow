@@ -11,11 +11,11 @@ const GigDetailsPage = () => {
   const [bids, setBids] = React.useState([]);
 
   const fetchGis = async () => {
-    const res = await api.get(`/gigs/gig/${id}`);
+    const res = await api.get(`/gigs/gig/${id}`, { withCredentials: true });
     setGig(res.data.gig);
   };
    const fetchBid = async () => {
-    const res = await api.get(`/bids/${id}`);
+    const res = await api.get(`/bids/${id}`, { withCredentials: true });
     setBids(res.data.bids);
   };
   useEffect(() => {

@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
   const login = async (email, password) => {
     
-    const res = await api.post("/auth/login", { email, password });
+    const res = await api.post("/auth/login", { email, password },{withCredentials: true});
     setUser(res.data.user);
     if(user.role === "client") { 
       window.location.href = "/dashboard"
@@ -37,13 +37,13 @@ export const AuthProvider = ({ children }) => {
       username,
       email,
       password,
-    });
+    },{withCredentials: true});
     setUser(res.data.user);
     return res;
   };
 
   const logout = async () => {
-    await api.get("/auth/logout");
+    await api.get("/auth/logout", { withCredentials: true });
     setUser(null);
   };
 

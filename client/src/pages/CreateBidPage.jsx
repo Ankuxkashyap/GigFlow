@@ -13,7 +13,7 @@ const CreateBidPage = () => {
 
   useEffect(() => {
     const fetchGig = async () => {
-      const res = await api.get(`/gigs/gig/${id}`);
+      const res = await api.get(`/gigs/gig/${id}`, { withCredentials: true });
       setGig(res.data.gig);
     };
     fetchGig();
@@ -21,18 +21,21 @@ const CreateBidPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-        setLoading(true);
-        const res =  await api.post(`/bids`, { message, gigId: id }); 
-        console.log(res);
-    }catch(err){
-        console.log(err);
-    }finally{
-        toast.success("Bid created successfully");
-        setLoading(false);
-        navigate("/my-bids");
+    try {
+      setLoading(true);
+      const res = await api.post(
+        `/bids`,
+        { message, gigId: id },
+        { withCredentials: true }
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      toast.success("Bid created successfully");
+      setLoading(false);
+      navigate("/my-bids");
     }
-
   };
 
   return (
@@ -46,9 +49,7 @@ const CreateBidPage = () => {
           </p>
 
           <div className="flex justify-between items-center">
-            <p className="text-lg font-semibold">
-              Budget: ₹{gig.budget}
-            </p>
+            <p className="text-lg font-semibold">Budget: ₹{gig.budget}</p>
 
             <span className="px-3 py-1 text-sm rounded-full bg-gray-100 text-black">
               {gig.status?.toUpperCase()}
@@ -57,9 +58,7 @@ const CreateBidPage = () => {
         </div>
 
         <div className="p-6 rounded-xl shadow-[0_6px_20px_rgba(0,0,0,0.15)]">
-          <h2 className="text-xl font-bold mb-4">
-            Apply for this Gig
-          </h2>
+          <h2 className="text-xl font-bold mb-4">Apply for this Gig</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -86,7 +85,6 @@ const CreateBidPage = () => {
             </button>
           </form>
         </div>
-
       </div>
     </div>
   );

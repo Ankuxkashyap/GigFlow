@@ -18,7 +18,7 @@ const CreateGigPage = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-        const res = await api.post("/gigs", formData);
+        const res = await api.post("/gigs", formData,{withCredentials: true});
         console.log(res);
     }catch(err){
         console.log(err);
