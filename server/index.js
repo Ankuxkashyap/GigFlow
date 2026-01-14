@@ -13,12 +13,18 @@ const app = express();
 
 const PORT = 5000;
 
+const allowedOrigin = process.env.CLIENT_URL || "http://localhost:5173";
 connectDB();
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE','PATCH']
 }))
+app.options("*", cors({
+  origin: allowedOrigin,
+  credentials: true,
+  methods: ['GET','POST','PUT','DELETE','PATCH']
+}));
 
 app.use(cookieParser());
 app.use(express.json());
