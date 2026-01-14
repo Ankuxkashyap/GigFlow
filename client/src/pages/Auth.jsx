@@ -9,7 +9,7 @@ export default function AuthSystem() {
   const navigate = useNavigate();
   const {register,login} = useAuth();
   const {user} = useAuth();
-    console.log(user?.role)
+    // console.log(user?.role)
   const [formData, setFormData] = useState({
     username: "",
     email: "",
